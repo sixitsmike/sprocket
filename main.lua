@@ -35,12 +35,5 @@ game.y=-trackObject.y+200
 
 end
 
-<<<<<<< HEAD
-Runtime:addEventListener( "enterFrame", gameLoop );
---testings
-=======
 Runtime:addEventListener( "enterFrame", gameLoop );
 
-TESTchristheCODER
-
->>>>>>> 75043956a7ac1e2aaa2b21dc7444dd44ff44bbe1
