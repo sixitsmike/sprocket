@@ -162,6 +162,10 @@ main.leftfoot.y=706
 
 main.container.x=400
 main.container.y=0
+
+main.container.xScale = 0.25
+main.container.yScale = 0.25
+
 main.game:insert(main.container)
 
 

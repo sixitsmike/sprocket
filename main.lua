@@ -1,41 +1,94 @@
 print("do good be good");
 display.setStatusBar( display.HiddenStatusBar )
-dummyBg=display.newImage("Background.png",-300,100)
 local game=display.newGroup();
 local physics = require("physics")
-local watchMaker=require ("Hero")
+local watchMaker=require ("hero")
 
 physics.start()
 physics.setScale( 60)
-physics.setGravity(0,9.8)
+--physics.setGravity(0,9.8,0)
 
-game:insert(dummyBg)
+--dummyBg=display.newImage("Background.png",-300,100)
+--game:insert(dummyBg)
 
 
---[[game:insert(dummyBg)
 watchMaker.main.construct(physics,game)
 
---dummy background
-
-
-
+--[[
 dummyGround=display.newImage("dummyground.png",-200,1000,true);
 dummyGround.rotation=-1
 physics.addBody(dummyGround,"static")
 game:insert(dummyGround)
+]]
 
 
-gameLoop=function()
+local function onTouch( event )
+	
+    local t = event.target
+	local phase = event.phase
+	
+    if "began" == phase then
+		
+        local parent = t.parent
+		parent:insert( t )
+		display.getCurrentStage():setFocus( t )
 
---print(watchMaker.main.body);
+		t.isFocus = true
 
-local trackObject=watchMaker.main.head
-game.x = -trackObject.x-200
-game.y=-trackObject.y+200
+		t.x0 = event.x - t.x
+		t.y0 = event.y - t.y
 
+	elseif t.isFocus then
 
+		if "moved" == phase then
+			
+            t.x = event.x - t.x0
+			t.y = event.y - t.y0
+
+		elseif "ended" == phase or "cancelled" == phase then
+
+			display.getCurrentStage():setFocus( nil )
+			t.isFocus = false
+
+		end
+	end
+
+	return true
 
 end
 
+local sprocket = {}
+
+local function addSprocket()
+
+    sprocket = display.newImage("sprocket_1.png")
+    sprocket.x = 400
+    sprocket.y = 800
+    sprocket.myName = "sprocket"
+    physics.addBody( sprocket, {radius=120, friction=1} )
+    sprocket.bodyType = "kinematic"
+    
+    sprocket:addEventListener("touch", onTouch)
+
+end
+
+gameLoop=function()
+
+
+--[[ taking tracking out for now
+local trackObject=watchMaker.main.head
+game.x = -trackObject.x-200
+game.y=-trackObject.y+200
+]]
+
+    if (sprocket.rotation == 360) then
+        sprocket.rotation = 0
+    else    
+        sprocket.rotation = sprocket.rotation + 10
+    end
+
+end
+
+addSprocket()
 Runtime:addEventListener( "enterFrame", gameLoop );
---]]
+
