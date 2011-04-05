@@ -16,7 +16,7 @@ local ipairs = ipairs
 
 main={
 
-container=nil,
+--container=nil,
 
 physics=nil,
 --body related declaration
@@ -53,24 +53,24 @@ initphyics=function()
 		local scaleFactor = .99
 
 			local physicsData=physicsData(scaleFactor)
-			physics.addBody( main.head, physicsData:get("ClockMaker_Head") )
+			physics.addBody( main.head, physicsData:get("hero_head") )
 
 
 
 
-			physics.addBody( main.body, physicsData:get("ClockMaker_Torso") )
+			physics.addBody( main.body, physicsData:get("hero_torso") )
 
-			physics.addBody( main.leftArm, physicsData:get("ClockMaker_Arm_Left_Upper") )
-			physics.addBody( main.leftHand, physicsData:get("ClockMaker_Arm_Left_Lower") )
+			physics.addBody( main.leftArm, physicsData:get("hero_arm_left_upper") )
+			physics.addBody( main.leftHand, physicsData:get("hero_arm_left_lower") )
 
-			physics.addBody( main.rightArm, physicsData:get("ClockMaker_Arm_Right_Upper") )
-			physics.addBody( main.rightHand, physicsData:get("ClockMaker_Arm_Right_Lower") )
+			physics.addBody( main.rightArm, physicsData:get("hero_arm_right_upper") )
+			physics.addBody( main.rightHand, physicsData:get("hero_arm_right_lower") )
 
-			physics.addBody( main.leftfoot, physicsData:get("ClockMaker_Leg_Left_Lower") )
-			physics.addBody( main.leftleg, physicsData:get("ClockMaker_Leg_Left_Upper") )
+			physics.addBody( main.leftfoot, physicsData:get("hero_leg_left_lower") )
+			physics.addBody( main.leftleg, physicsData:get("hero_leg_left_upper") )
 
-			physics.addBody( main.rightfoot, physicsData:get("ClockMaker_Leg_Right_Lower") )
-			physics.addBody( main.rightleg, physicsData:get("ClockMAker_Leg_Right_Upper") )
+			physics.addBody( main.rightfoot, physicsData:get("hero_leg_right_lower") )
+			physics.addBody( main.rightleg, physicsData:get("hero_leg_right_upper") )
 
 				main.game:insert(main.head)
 				main.game:insert(main.leftHand)
@@ -95,25 +95,25 @@ construct=function(phy_,game_)
 			main.physics=phy
 			main.game=game_
 
-			main.container=display.newGroup()
-			main.head = display.newImage("ClockMaker_Head.png")
+			--main.container=display.newGroup()
+			main.head = display.newImage("hero_head.png")
 
-			main.leftHand=display.newImage("ClockMaker_Arm_Left_Lower.png")
-			main.leftArm=display.newImage("ClockMaker_Arm_Left_Upper.png")
+			main.leftHand=display.newImage("hero_arm_left_lower.png")
+			main.leftArm=display.newImage("hero_arm_left_upper.png")
 
-			main.rightHand=display.newImage("ClockMaker_Arm_Right_Lower.png")
-			main.rightArm=display.newImage("ClockMaker_Arm_Right_Upper.png")
-
-
+			main.rightHand=display.newImage("hero_arm_right_lower.png")
+			main.rightArm=display.newImage("hero_arm_right_upper.png")
 
 
-			main.leftleg=display.newImage("ClockMaker_Leg_Left_Upper.png")
-			main.leftfoot=display.newImage("ClockMaker_Leg_Left_Lower.png")
 
-			main.rightleg=display.newImage("ClockMAker_Leg_Right_Upper.png")
-			main.rightfoot=display.newImage("ClockMaker_Leg_Right_Lower.png")
 
-	main.body=display.newImage("ClockMaker_Torso.png")
+			main.leftleg=display.newImage("hero_leg_left_upper.png")
+			main.leftfoot=display.newImage("hero_leg_left_lower.png")
+
+			main.rightleg=display.newImage("hero_leg_right_upper.png")
+			main.rightfoot=display.newImage("hero_leg_right_lower.png")
+
+	main.body=display.newImage("hero_torso.png")
 
 
 
@@ -173,8 +173,7 @@ main.leftfoot.y=706
 
 --main.container.xScale = 0.25
 --main.container.yScale = 0.25
-
-main.game:insert(main.container)
+--main.game:insert(main.container)
 
 
 end
@@ -259,7 +258,7 @@ function physicsData(scale)
 	local physics = { data =
 	{
 
-		["ClockMaker_Head"] = {
+		["hero_head"] = {
 
 				{
 					density = 2, friction = 0, bounce = 0,
@@ -419,7 +418,7 @@ function physicsData(scale)
 		}
 
 		,
-		["ClockMaker_Torso"] = {
+		["hero_torso"] = {
 
 				{
 					density = 2, friction = 0, bounce = 0,
@@ -529,7 +528,7 @@ function physicsData(scale)
 		}
 
 		,
-		["ClockMaker_Arm_Left_Lower"] = {
+		["hero_arm_left_lower"] = {
 
 				{
 					density = 2, friction = 0, bounce = 0,
@@ -594,7 +593,7 @@ function physicsData(scale)
 		}
 
 		,
-		["ClockMaker_Arm_Left_Upper"] = {
+		["hero_arm_left_upper"] = {
 
 				{
 					density = 2, friction = 0, bounce = 0,
@@ -649,7 +648,7 @@ function physicsData(scale)
 		}
 
 		,
-		["ClockMaker_Arm_Right_Lower"] = {
+		["hero_arm_right_lower"] = {
 
 				{
 					density = 2, friction = 0, bounce = 0,
@@ -684,7 +683,7 @@ function physicsData(scale)
 		}
 
 		,
-		["ClockMaker_Arm_Right_Upper"] = {
+		["hero_arm_right_upper"] = {
 
 				{
 					density = 2, friction = 0, bounce = 0,
@@ -749,7 +748,7 @@ function physicsData(scale)
 		}
 
 		,
-		["ClockMaker_Leg_Left_Lower"] = {
+		["hero_leg_left_lower"] = {
 
 				{
 					density = 2, friction = 0, bounce = 0,
@@ -794,7 +793,7 @@ function physicsData(scale)
 		}
 
 		,
-		["ClockMaker_Leg_Left_Upper"] = {
+		["hero_leg_left_upper"] = {
 
 				{
 					density = 2, friction = 0, bounce = 0,
@@ -824,7 +823,7 @@ function physicsData(scale)
 		}
 
 		,
-		["ClockMaker_Leg_Right_Lower"] = {
+		["hero_leg_right_lower"] = {
 
 				{
 					density = 2, friction = 0, bounce = 0,
@@ -879,7 +878,7 @@ function physicsData(scale)
 		}
 
 		,
-		["ClockMAker_Leg_Right_Upper"] = {
+		["hero_leg_right_upper"] = {
 
 				{
 					density = 2, friction = 0, bounce = 0,

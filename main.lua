@@ -8,18 +8,16 @@ physics.start()
 --physics.setScale( 60)
 --physics.setGravity(0,9.8,0)
 
---dummyBg=display.newImage("Background.png",-300,100)
---game:insert(dummyBg)
+bg = display.newImage("bg_level_1.png", 0, 0, true)
+bg.x = display.contentWidth / 2
+bg.y = display.contentHeight / 2
+bg.rotation = 90
+bg.xScale = .75
+bg.yScale = .75
+game:insert(bg)
 
 
-watchMaker.main.construct(physics,game)
-
---[[
-dummyGround=display.newImage("dummyground.png",-200,1000,true);
-dummyGround.rotation=-1
-physics.addBody(dummyGround,"static")
-game:insert(dummyGround)
-]]
+watchMaker.main.construct(physics, game)
 
 
 local function onTouch( event )
@@ -61,31 +59,14 @@ local sprocket = {}
 
 local function addSprocket()
 
-   falling = display.newImage("sprocket_1.png")
-    falling.y = 800
-	falling.x=50
-    physics.addBody( falling,"static", {radius=230, friction=0} )
-	game:insert(falling)
-
     sprocket = display.newImage("sprocket_1.png")
     sprocket.x = 400
     sprocket.y = 800
     sprocket.myName = "sprocket"
-    physics.addBody( sprocket, "static", {radius=230, friction=1} )
+    physics.addBody( sprocket, {radius=230, friction=1} )
 	game:insert(sprocket)
 
-
-
-
-	 sprocket2 = display.newImage("sprocket_1.png")
-    sprocket2.x = 1000
-    sprocket2.y = 800
-    sprocket2.myName = "sprocket11"
-    physics.addBody( sprocket2, "static", {radius=230, friction=1} )
-	game:insert(sprocket2)
-
-
-    --sprocket.bodyType = "kinematic"
+    sprocket.bodyType = "kinematic"
 
     sprocket:addEventListener("touch", onTouch)
 
@@ -95,18 +76,16 @@ gameLoop=function()
 
 
 --taking tracking out for now
-local trackObject=watchMaker.main.head
-game.x = -trackObject.x+400
-game.y=	 -trackObject.y+100
-
-print(watchMaker.main.head.x);
+--local trackObject=watchMaker.main.head
+--game.x = -trackObject.x+400
+--game.y=	 -trackObject.y+100
+--print(watchMaker.main.head.x);
 
     if (sprocket.rotation == 360) then
         sprocket.rotation = 0
 
     else
         sprocket.rotation = sprocket.rotation + 1
-		falling.rotation=falling.rotation+1
     end
 
 end
