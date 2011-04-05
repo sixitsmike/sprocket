@@ -3,7 +3,7 @@ display.setStatusBar( display.HiddenStatusBar )
 local game=display.newGroup();
 local physics = require("physics")
 local watchMaker=require ("hero")
-physics.setDrawMode( "hybrid" )
+--physics.setDrawMode( "hybrid" )
 physics.start()
 --physics.setScale( 60)
 --physics.setGravity(0,9.8,0)
@@ -63,14 +63,28 @@ local function addSprocket()
 
    falling = display.newImage("sprocket_1.png")
     falling.y = 800
-	falling.x=100
+	falling.x=50
     physics.addBody( falling,"static", {radius=230, friction=0} )
+	game:insert(falling)
 
     sprocket = display.newImage("sprocket_1.png")
     sprocket.x = 400
     sprocket.y = 800
     sprocket.myName = "sprocket"
     physics.addBody( sprocket, "static", {radius=230, friction=1} )
+	game:insert(sprocket)
+
+
+
+
+	 sprocket2 = display.newImage("sprocket_1.png")
+    sprocket2.x = 1000
+    sprocket2.y = 800
+    sprocket2.myName = "sprocket11"
+    physics.addBody( sprocket2, "static", {radius=230, friction=1} )
+	game:insert(sprocket2)
+
+
     --sprocket.bodyType = "kinematic"
 
     sprocket:addEventListener("touch", onTouch)
@@ -80,16 +94,19 @@ end
 gameLoop=function()
 
 
---[[ taking tracking out for now
+--taking tracking out for now
 local trackObject=watchMaker.main.head
-game.x = -trackObject.x-200
-game.y=-trackObject.y+200
-]]
+game.x = -trackObject.x+400
+game.y=	 -trackObject.y+100
+
+print(watchMaker.main.head.x);
 
     if (sprocket.rotation == 360) then
         sprocket.rotation = 0
+
     else
         sprocket.rotation = sprocket.rotation + 1
+		falling.rotation=falling.rotation+1
     end
 
 end

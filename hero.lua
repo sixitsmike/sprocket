@@ -50,7 +50,7 @@ game=null,
 
 initphyics=function()
 
-	--	local scaleFactor = .25
+		local scaleFactor = .99
 
 			local physicsData=physicsData(scaleFactor)
 			physics.addBody( main.head, physicsData:get("ClockMaker_Head") )
@@ -71,6 +71,19 @@ initphyics=function()
 
 			physics.addBody( main.rightfoot, physicsData:get("ClockMaker_Leg_Right_Lower") )
 			physics.addBody( main.rightleg, physicsData:get("ClockMAker_Leg_Right_Upper") )
+
+				main.game:insert(main.head)
+				main.game:insert(main.leftHand)
+				main.game:insert(main.leftArm)
+
+				main.game:insert(main.rightArm)
+				main.game:insert(main.rightHand)
+				main.game:insert(main.leftfoot)
+				main.game:insert(main.leftleg)
+				main.game:insert(main.rightfoot)
+				main.game:insert(main.rightleg)
+				main.game:insert(main.body);
+
 
 end,
 
@@ -103,20 +116,7 @@ construct=function(phy_,game_)
 	main.body=display.newImage("ClockMaker_Torso.png")
 
 
-	--[[--
-				main.container:insert(main.head)
 
-				main.container:insert(main.leftHand)
-				main.container:insert(main.leftArm)
-
-				main.container:insert(main.rightArm)
-				main.container:insert(main.rightHand)
-				main.container:insert(main.leftfoot)
-				main.container:insert(main.leftleg)
-				main.container:insert(main.rightfoot)
-				main.container:insert(main.rightleg)
-				main.container:insert(main.body);
---]]--
 
 
 
@@ -127,10 +127,14 @@ construct=function(phy_,game_)
 		main.initphyics()
 		main.positionParts()
 		main.makeJoint()
+
 				end
 
 ,
 positionParts=function()
+
+
+
 main.head.x=0
 main.head.y=0
 
@@ -165,8 +169,7 @@ main.leftfoot.y=706
 
 
 
-main.container.x=400
-main.container.y=-500
+
 
 --main.container.xScale = 0.25
 --main.container.yScale = 0.25
@@ -915,7 +918,7 @@ function physicsData(scale)
 	for bi,body in pairs(physics.data) do
 		for fi,fixture in ipairs(body) do
 			for ci,coordinate in ipairs(fixture.shape) do
-			--	fixture.shape[ci] = s * coordinate
+				fixture.shape[ci] = s * coordinate
 			end
 		end
 	end
