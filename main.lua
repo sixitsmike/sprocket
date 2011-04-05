@@ -3,7 +3,7 @@ display.setStatusBar( display.HiddenStatusBar )
 local game=display.newGroup();
 local physics = require("physics")
 local watchMaker=require ("hero")
-
+physics.setDrawMode( "hybrid" )
 physics.start()
 --physics.setScale( 60)
 --physics.setGravity(0,9.8,0)
@@ -12,7 +12,7 @@ physics.start()
 --game:insert(dummyBg)
 
 
---watchMaker.main.construct(physics,game)
+watchMaker.main.construct(physics,game)
 
 --[[
 dummyGround=display.newImage("dummyground.png",-200,1000,true);
@@ -23,12 +23,12 @@ game:insert(dummyGround)
 
 
 local function onTouch( event )
-	
+
     local t = event.target
 	local phase = event.phase
-	
+
     if "began" == phase then
-		
+
         local parent = t.parent
 		parent:insert( t )
 		display.getCurrentStage():setFocus( t )
@@ -41,7 +41,7 @@ local function onTouch( event )
 	elseif t.isFocus then
 
 		if "moved" == phase then
-			
+
             t.x = event.x - t.x0
 			t.y = event.y - t.y0
 
@@ -60,10 +60,11 @@ end
 local sprocket = {}
 
 local function addSprocket()
-    
-    falling = display.newImage("sprocket_1.png")
-    falling.y = -500
-    physics.addBody( falling, {radius=230, friction=1} )
+
+   falling = display.newImage("sprocket_1.png")
+    falling.y = 800
+	falling.x=100
+    physics.addBody( falling,"static", {radius=230, friction=0} )
 
     sprocket = display.newImage("sprocket_1.png")
     sprocket.x = 400
@@ -71,8 +72,8 @@ local function addSprocket()
     sprocket.myName = "sprocket"
     physics.addBody( sprocket, "static", {radius=230, friction=1} )
     --sprocket.bodyType = "kinematic"
-    
-    --sprocket:addEventListener("touch", onTouch)
+
+    sprocket:addEventListener("touch", onTouch)
 
 end
 
@@ -87,7 +88,7 @@ game.y=-trackObject.y+200
 
     if (sprocket.rotation == 360) then
         sprocket.rotation = 0
-    else    
+    else
         sprocket.rotation = sprocket.rotation + 1
     end
 
