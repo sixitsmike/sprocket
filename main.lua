@@ -5,14 +5,14 @@ local physics = require("physics")
 local watchMaker=require ("hero")
 
 physics.start()
-physics.setScale( 60)
+--physics.setScale( 60)
 --physics.setGravity(0,9.8,0)
 
 --dummyBg=display.newImage("Background.png",-300,100)
 --game:insert(dummyBg)
 
 
-watchMaker.main.construct(physics,game)
+--watchMaker.main.construct(physics,game)
 
 --[[
 dummyGround=display.newImage("dummyground.png",-200,1000,true);
@@ -60,15 +60,19 @@ end
 local sprocket = {}
 
 local function addSprocket()
+    
+    falling = display.newImage("sprocket_1.png")
+    falling.y = -500
+    physics.addBody( falling, {radius=230, friction=1} )
 
     sprocket = display.newImage("sprocket_1.png")
     sprocket.x = 400
     sprocket.y = 800
     sprocket.myName = "sprocket"
-    physics.addBody( sprocket, {radius=120, friction=1} )
-    sprocket.bodyType = "kinematic"
+    physics.addBody( sprocket, "static", {radius=230, friction=1} )
+    --sprocket.bodyType = "kinematic"
     
-    sprocket:addEventListener("touch", onTouch)
+    --sprocket:addEventListener("touch", onTouch)
 
 end
 
@@ -84,7 +88,7 @@ game.y=-trackObject.y+200
     if (sprocket.rotation == 360) then
         sprocket.rotation = 0
     else    
-        sprocket.rotation = sprocket.rotation + 10
+        sprocket.rotation = sprocket.rotation + 1
     end
 
 end
