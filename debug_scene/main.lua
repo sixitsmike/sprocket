@@ -21,12 +21,8 @@ may be shold rescale each with out the container
 
 
 --]]---
-local scaleFactor = .5
-arm_bottom.xScale = scaleFactor
-arm_bottom.yScale = scaleFactor
+local scaleFactor = .4
 
-arm_top.xScale = scaleFactor
-arm_top.yScale = scaleFactor
 
 
 --arm_group = display.newGroup()
@@ -50,6 +46,13 @@ if (COLLISION_ON) then
     phys.addBody( arm_bottom, arm_bottom_verts:get("arm_bottom") )
     phys.addBody( arm_top, arm_top_verts:get("arm_top") )
 end
+
+arm_bottom.xScale = scaleFactor
+arm_bottom.yScale = scaleFactor
+
+arm_top.xScale = scaleFactor
+arm_top.yScale = scaleFactor
+
 
 local floor = display.newImage("floor.png")
 floor.y = 420

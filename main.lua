@@ -17,7 +17,10 @@ bg.yScale = .75
 game:insert(bg)
 
 
-watchMaker.main.construct(physics, game)
+local scaleFactor=.5
+
+watchMaker.main.construct(physics, game,scaleFactor)
+watchMaker.main.positionParts(350,100)
 
 
 local function onTouch( event )
@@ -55,12 +58,13 @@ local function onTouch( event )
 
 end
 
-local sprocket = {}
+
+
 
 local function addSprocket()
 
-    sprocket = display.newImage("sprocket_1.png")
-    sprocket.x = 400
+  local  sprocket = display.newImage("sprocket_1.png")
+    sprocket.x = 200
     sprocket.y = 800
     sprocket.myName = "sprocket"
     physics.addBody( sprocket, {radius=230, friction=1} )
@@ -69,8 +73,16 @@ local function addSprocket()
     sprocket.bodyType = "kinematic"
 
     sprocket:addEventListener("touch", onTouch)
+return sprocket
+
 
 end
+
+
+
+local s1=addSprocket()
+local s2=addSprocket()
+s2.x=s2.x+600
 
 gameLoop=function()
 
@@ -81,15 +93,17 @@ gameLoop=function()
 --game.y=	 -trackObject.y+100
 --print(watchMaker.main.head.x);
 
-    if (sprocket.rotation == 360) then
-        sprocket.rotation = 0
+    if (s1.rotation == 360) then
+        s1.rotation = 0
+		s2.rotation=360
 
     else
-        sprocket.rotation = sprocket.rotation + 1
+        s1.rotation = s1.rotation + 1
+		s2.rotation=s2.rotation-1
     end
 
 end
 
-addSprocket()
+
 Runtime:addEventListener( "enterFrame", gameLoop );
 
