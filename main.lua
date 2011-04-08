@@ -61,28 +61,33 @@ end
 
 
 
-local function addSprocket()
+local function addSprocket(scaleFactor)
 
-  local  sprocket = display.newImage("sprocket_1.png")
+
+    local verts = (require "sprocket_1").physicsData(scaleFactor)
+    local  sprocket = display.newImage("sprocket_1.png")
     sprocket.x = 200
     sprocket.y = 800
+    sprocket.xScale = scaleFactor
+    sprocket.yScale = scaleFactor
     sprocket.myName = "sprocket"
-    physics.addBody( sprocket, {radius=230, friction=1} )
+    physics.addBody( sprocket, verts:get("sprocket_1") )
+    sprocket.friction = 1
 	game:insert(sprocket)
 
     sprocket.bodyType = "kinematic"
 
     sprocket:addEventListener("touch", onTouch)
-return sprocket
+    return sprocket
 
 
 end
 
 
 
-local s1=addSprocket()
-local s2=addSprocket()
-s2.x=s2.x+600
+local s1=addSprocket(1.0)
+local s2=addSprocket(0.5)
+s2.x=s2.x+500
 
 gameLoop=function()
 
