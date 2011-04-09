@@ -214,67 +214,60 @@ end
 
 ,
 makeJoint=function()
-main.neckJoint=physics.newJoint("pivot",main.head,main.body,0,0)
-main.neckJoint.isLimitEnabled = true -- (boolean)
-main.neckJoint:setRotationLimits( -10, 10 )
+
+    main.neckJoint = physics.newJoint("pivot", main.head, main.body, 0, 0)
+    main.neckJoint.isLimitEnabled = true
+    main.neckJoint:setRotationLimits( -1, 1 )
+    --main.neckJoint:setLimits( -1, 1 ) 
+
+
+    main.rightShoulderJoint=physics.newJoint("pivot",main.body,main.rightArm,0,0)
+    main.rightShoulderJoint.isLimitEnabled = true -- (boolean)
+    main.rightShoulderJoint:setRotationLimits( -1, 1 )
+    --main.rightShoulderJoint:setLimits( -1, 1 )
+
+
+    main.leftShoulderJoint=physics.newJoint("pivot",main.body,main.leftArm,0,0)
+    main.leftShoulderJoint.isLimitEnabled = true -- (boolean)
+    main.leftShoulderJoint:setRotationLimits( -1, 1 )
+    --main.leftShoulderJoint:setLimits( -1, 1 )
+
+
+    main.rightArmJoint=physics.newJoint("pivot",main.rightArm,main.rightHand,0,0)
+    main.rightArmJoint.isLimitEnabled = true -- (boolean)
+    main.rightArmJoint:setRotationLimits( -1, 1 )
+    --main.rightArmJoint:setLimits( -1, 1 )
+
+
+    main.leftArmJoint=physics.newJoint("pivot",main.leftArm,main.leftHand,0,0)
+    main.leftArmJoint.isLimitEnabled = true -- (boolean)
+    main.leftArmJoint:setRotationLimits( -1, 1 )
+    --main.leftArmJoint:setLimits( -1, 1 )
+
+
+    main.leftHipJoint=physics.newJoint("pivot",main.body,main.leftleg,0,0)
+    main.leftHipJoint.isLimitEnabled = true
+    main.leftHipJoint:setRotationLimits( -1, 1 )
+    --main.leftHipJoint:setLimits( -1, 1 )
+
+
+    main.rightHipJoint=physics.newJoint("pivot",main.body,main.rightleg,0,0)
+    main.rightHipJoint.isLimitEnabled = true
+    main.rightHipJoint:setRotationLimits( -1, 1 )
+    --main.rightHipJoint:setLimits( -1, 1 )
 
 
 
-
-main.rightShoulderJoint=physics.newJoint("pivot",main.body,main.rightArm,0,0)
-main.rightShoulderJoint.isLimitEnabled = true -- (boolean)
-main.rightShoulderJoint:setRotationLimits( -5,30 )
-
-
-
-main.leftShoulderJoint=physics.newJoint("pivot",main.body,main.leftArm,0,0)
-main.leftShoulderJoint.isLimitEnabled = true -- (boolean)
-main.leftShoulderJoint:setRotationLimits( -30,15 )
+    main.rightKneeJoint=physics.newJoint("pivot",main.rightleg,main.rightfoot,0,0)
+    main.rightKneeJoint.isLimitEnabled = true
+    main.rightKneeJoint:setRotationLimits( -1, 1 )
+    --main.rightKneeJoint:setLimits( -1, 1 )
 
 
-
-
-main.rightArmJoint=physics.newJoint("pivot",main.rightArm,main.rightHand,0,0)
-main.rightArmJoint.isLimitEnabled = true -- (boolean)
-main.rightArmJoint:setRotationLimits( -0,0 )
-
-
-
-
-main.leftArmJoint=physics.newJoint("pivot",main.leftArm,main.leftHand,0,0)
-main.leftArmJoint.isLimitEnabled = true -- (boolean)
-main.leftArmJoint:setRotationLimits( -0,0 )
-
-
-
-
-
-
-main.leftHipJoint=physics.newJoint("pivot",main.body,main.leftleg,0,0)
-main.leftHipJoint.isLimitEnabled = true
-main.leftHipJoint:setRotationLimits( 0,0)
-
-
-main.rightHipJoint=physics.newJoint("pivot",main.body,main.rightleg,0,0)
-main.rightHipJoint.isLimitEnabled = true
-main.rightHipJoint:setRotationLimits( 0,0 )
-
-
-
-
-
-
-
-main.rightKneeJoint=physics.newJoint("pivot",main.rightleg,main.rightfoot,0,0)
-main.rightKneeJoint.isLimitEnabled = true
-main.rightKneeJoint:setRotationLimits( 0,0)
-
-
-main.leftKneeJoint=physics.newJoint("pivot",main.leftleg,main.leftfoot,0,0)
-main.leftKneeJoint.isLimitEnabled = true
-main.leftKneeJoint:setRotationLimits( 0,0 )
-
-
+    main.leftKneeJoint=physics.newJoint("pivot",main.leftleg,main.leftfoot,0,0)
+    main.leftKneeJoint.isLimitEnabled = true
+    main.leftKneeJoint:setRotationLimits( -1, 1 )
+    --main.leftKneeJoint:setLimits( -1, 1 )
 
 end
 }
