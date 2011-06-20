@@ -14,7 +14,7 @@ end
 
 local function showSplash()
 
-    background = display.newImage( "splash.png", 0, 0, true )
+    background = display.newImage( "splash.jpg", 0, 0, true )
     background.x = display.contentWidth / 2
     background.y = display.contentHeight / 2
     background.xScale = .65
